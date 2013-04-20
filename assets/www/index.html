@@ -1,0 +1,231 @@
+<!-- Copyright (c) 2012 Mobile Developer Solutions -->
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <title>Aplic. Web de jQuery Mobile</title>
+	
+	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" /> 
+	<link rel="stylesheet" href="styles/style.css" />
+	
+	<link rel="stylesheet"  href="jquery.mobile/jqm-icon-pack-2.0-original.css" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Jacques+Francois' rel='stylesheet' type='text/css'>
+	
+	<script src="jquery.mobile/jquery-1.7.2.min"></script>
+	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+	<script src="jquery.mobile/jquery.validate.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="cordova-2.6.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="index.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="config.js"></script>
+	
+	<script type="text/javascript" src="encryption/sha1.js"></script>
+	
+	
+	<!-- INCLUSIÓN DE LIBRERIAS API PROPIA -->
+	<script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
+  
+	<script src="jquery.mobile/json.min.js"></script>
+	</head>
+  
+ <body onload="resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
+
+	<!--***********************************************************************-->
+	<!-- @page 		  : LOGIN de usario -->
+	<!-- @description : Punto de entrada a la aplicación con el logeo del usuario -->
+	<!-- @pageBefore  : Ninguna -->
+	<!-- @pageAfter   : -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pageLogin">
+		<div data-role="header" data-position="fixed">
+			<h1>Gestor de Notas</h1>
+			<a href="#pageRegister" data-icon="gear">Registro</a>
+		</div>
+		<div data-role="content">
+			<form id="formLogin" action="javascript:peticionLogin()">
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Usuario:</p>
+					<input type="email" name="email" id="textinput" value="" placeholder="Email" class="required email" minlength="5"/>
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Contraseña:</p>
+					<input type="password" name="pass" id="passwordinput" value="" placeholder="Pass" class="required" minlength="5"/>
+					<br>
+				</div>
+				
+				<div align="center">
+					<input id="btLogin" value="Entrar" type="submit" data-inline="true" >
+				</div>
+			</form>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4>Uja</h4>
+		</div>
+	</div>
+
+	<!--***********************************************************************-->
+	<!-- @page 		  : REGISTRO de usuario-->
+	<!-- @description : Permite cambiar los datos del profesor-->
+	<!-- @pageBefore  : LOGIN -->
+	<!-- @pageAfter   : LOGIN -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pageRegister">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageLogin" data-icon="back">Atrás</a>
+			<h1>Registrarse</h1>
+		</div>
+
+		<div data-role="content" id="panel">
+			<form id="formRegister" action="javascript:peticionRegistro()">
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Email:</p>
+					<input type="email" name="email" id="textinput3" value="" placeholder="Email" class="required email" minlength="5" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Pass antigua:</p>
+					<input type="password" name="passAnt" id="passwordAntiguainput" value="" placeholder="Pass antigua" class="required" minlength="5" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Nueva Pass:</p>
+					<input type="password" name="pass" id="password" value="" placeholder="Pass nueva" class="required" minlength="5" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Confirmar Pass:</p>
+					<input type="password" name="" id="password2" value="" placeholder="Confirme su pass" class="required passmatch" minlength="5" /> 
+					<br>
+				</div>
+				<div align="center">
+					<input data-role="button" type="submit" data-inline="true" data-icon="" value="Registrarse">
+				</div>
+			</form>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!--***********************************************************************-->
+	<!-- @page 		  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @description : Muestra una lista con las asignaturas que el profesor lleva -->
+	<!-- @pageBefore  : LOGIN -->
+	<!-- @pageAfter   : AÑADIR ASIGNATURA/ -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pageSignatures">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageLogin" data-icon="back">Atrás</a>
+			<h1>Asignaturas</h1>
+			<a href="#pageAddSignature" data-icon="plus"
+				onclick="peticionTitulaciones()">Añadir</a>
+		</div>
+
+		<div data-role="content" id="listaAsignaturas"></div>
+
+		<div id="cargando" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!-- Dialogo de opciones -->
+	<div data-role="page" id="opcionesAsignatura">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
+			<h1>Opciones</h1>
+		</div>
+
+		<div data-role="content" align="center" id="contenidoOpAsig">
+			<!-- <ul data-role="listview" id="listaOpcionesAsignatura">
+				<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>
+				<li data-icon="edit"><a href="#" >Grupos teroría</a></li>
+				<li data-icon="edit"><a href="#">Inscripción en grupos</a></li>
+				<li data-icon="edit"><a href="#">Modificar Porcentajes</a></li>
+				<li data-icon="trash"><a href="#">Eliminar </a></li>
+			</ul>	 -->		
+		</div>
+	</div>
+
+	<!--***********************************************************************-->
+	<!-- @page 		  : AÑADIR ASIGNATURA -->
+	<!-- @description : Añade una asignatura nueva a la lista del profesor, permitiendo su configuración -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : ASIGNATURAS DEL PROFESOR -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pageAddSignature">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1>Nueva asignatura</h1>
+		</div>
+		
+		<div id="cargando2" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+		
+		<div data-role="content" id = "listarAsignaturasTitulacion">
+			<form id="formAnadeAsignatura">
+				<div id="TitulaAsign">
+					<div id="titulaciones"></div>
+					<div id="asignaturaElegida"></div>
+				</div>
+			</form>
+		    
+			<div data-role="content" align="center" id="btDialog"></div>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!-- DIALOGO RESPONSABLE -->
+	<div data-role="page" id="divDialogo">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
+			<h1 id="asignatura">Responsable</h1>
+		</div>
+
+		<div data-role="content" id="" align="center">
+			<h3 class="estiloH3" >¿Es usted el responsable de la asignatura?</h3>
+			<a href="javascript:EsResponsable()" data-role="button" data-inline="true">Si</a>
+			<a href="javascript:noEsResponsable()" data-role="button" data-inline="true">No</a>		
+		</div>
+	</div>
+	
+	<!-- DIALOGO RESPONSABLE -->
+	<div data-role="page" id="divDialogoEliminacionGrupo">
+		<div data-role="header" data-position="fixed" id="cabeceraEliminacionGrupo">
+			<h1>Eliminar grupo</h1>
+		</div>
+
+		<div data-role="content" align="center">
+			<h3 class="estiloH3">¿Está usted seguro de que desea eliminar el grupo?</h3>
+			<div id="btSiEliminar">
+				<a href="#" data-role="button" data-inline="true" data-theme="d" >Si</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="d" >No</a>	
+			</div>	
+		</div>
+	</div>
+	
+	<!-- DIALOGO ELIMINACION ASIGNATURA -->
+	<div data-role="page" id="divDialogoEliminacionAsignatura">
+		<div data-role="header" data-position="fixed" id="cabeceraEliminacionAsignatura">
+			<h1 >Eliminar asignatura</h1>
+		</div>
+
+		<div data-role="content" id="dialogElGrupoAsig" align="center">
+			<h3 class="estiloH3" >¿Está usted seguro de que desea eliminar la asignatura?</h3>
+			<div id="btSiEliminarAsignatura"></div>	
+		</div>
+	</div>
+
+</body>
+
+</html>
