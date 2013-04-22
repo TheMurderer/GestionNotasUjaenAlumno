@@ -27,11 +27,15 @@
 	<!-- INCLUSIÓN DE LIBRERIAS API PROPIA -->
 	<script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/asignatures.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/addAsignatures.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/califications.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/attendance.js"></script>
   
 	<script src="jquery.mobile/json.min.js"></script>
 	</head>
   
- <body onload="resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
+ <body>
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : LOGIN de usario -->
@@ -42,7 +46,7 @@
 	<div data-role="page" id="pageLogin">
 		<div data-role="header" data-position="fixed">
 			<h1>Gestor de Notas</h1>
-			<a href="#pageRegister" data-icon="gear">Registro</a>
+			<a href="#pageRegister" onclick="addSelectTitulacion();" data-icon="gear">Registro</a>
 		</div>
 		<div data-role="content">
 			<form id="formLogin" action="javascript:peticionLogin()">
@@ -78,26 +82,42 @@
 			<a href="#pageLogin" data-icon="back">Atrás</a>
 			<h1>Registrarse</h1>
 		</div>
-
-		<div data-role="content" id="panel">
+		<div id="cargando2" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+		<div data-role="content" id="divFormRegister">
 			<form id="formRegister" action="javascript:peticionRegistro()">
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Nombre:</p>
+					<input type="text" name="name" id="reName" value="" placeholder="Nombre" class="required" minlength="3" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Apellidos:</p>
+					<input type="text" name="surname" id="reSurname" value="" placeholder="Apellidos" class="required" minlength="3" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >DNI:</p>
+					<input type="text" name="dni" id="reDNI" value="" placeholder="DNI" class="required" minlength="3" />
+					<br>
+				</div>
 				<div class="agrupacionElementos">
 					<p class="letraDocumento" >Email:</p>
 					<input type="email" name="email" id="textinput3" value="" placeholder="Email" class="required email" minlength="5" />
 					<br>
 				</div>
 				<div class="agrupacionElementos">
-					<p class="letraDocumento" >Pass antigua:</p>
-					<input type="password" name="passAnt" id="passwordAntiguainput" value="" placeholder="Pass antigua" class="required" minlength="5" />
-					<br>
+					<p class="letraDocumento" >Titulación:</p>
+						<div id="reTitulacion" name="reTitulacion"></div>
 				</div>
 				<div class="agrupacionElementos">
-					<p class="letraDocumento" >Nueva Pass:</p>
+					<p class="letraDocumento" >Password:</p>
 					<input type="password" name="pass" id="password" value="" placeholder="Pass nueva" class="required" minlength="5" />
 					<br>
 				</div>
 				<div class="agrupacionElementos">
-					<p class="letraDocumento" >Confirmar Pass:</p>
+					<p class="letraDocumento" >Confirmar Password:</p>
 					<input type="password" name="" id="password2" value="" placeholder="Confirme su pass" class="required passmatch" minlength="5" /> 
 					<br>
 				</div>
@@ -123,7 +143,7 @@
 			<a href="#pageLogin" data-icon="back">Atrás</a>
 			<h1>Asignaturas</h1>
 			<a href="#pageAddSignature" data-icon="plus"
-				onclick="peticionTitulaciones()">Añadir</a>
+				onclick="peticionAsignaturasTitulacion()">Añadir</a>
 		</div>
 
 		<div data-role="content" id="listaAsignaturas"></div>
@@ -166,19 +186,60 @@
 			<h1>Nueva asignatura</h1>
 		</div>
 		
-		<div id="cargando2" class="capaCargando">
+		<div id="cargando3" class="capaCargando">
 			<img class="imagen" src="jquery.mobile/images/loading.gif">
 		</div>
 		
 		<div data-role="content" id = "listarAsignaturasTitulacion">
-			<form id="formAnadeAsignatura">
+			<form id="formAnadeAsignatura" action=javascript:addNewSignature();>
 				<div id="TitulaAsign">
-					<div id="titulaciones"></div>
 					<div id="asignaturaElegida"></div>
+					<div id="inscripGrupos"></div>
 				</div>
+				<div data-role="content" align="center" id="btAddAsignature"></div>
 			</form>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : CALIFICAR ALUMNO -->
+	<!-- @description : Permite poner la nota de teoría/prácticas/trabajos al alumno seleccionado  -->
+	<!-- @pageBefore  : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!-- @pageAfter   : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="calificacionAlumnos">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracionAlumnos">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 id="asignatura">Alumno</h1>
 		    
-			<div data-role="content" align="center" id="btDialog"></div>
+			<div data-role="navbar">
+				<ul>
+					<li><a id="pestanaTeoriaCalificacion" href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria </a></li>
+					<li><a id="pestanaPracticasCalificacion" href="" onClick="mostrarDIVAsig('P')"> Prácticas </a></li>
+					<li><a id="pestanaTrabajoCalificacion" href="" onClick="mostrarDIVAsig('TV')"> Trabajos </a></li>
+					<li><a id="pestanaAsistenciaCalificacion" href="" onClick="mostrarDIVAsig('A')"> Asistencia </a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="cargando4" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+
+		<div data-role="content" id="panelContenidoAsignaturaAlum">
+
+				<div data-role="content" id="contDIVTeoria"></div>
+				<div data-role="content" id="contDIVPractica"></div>	
+				<div data-role="content" id="contDIVTrabajos"></div>
+				<div data-role="content" id="contDIVAsistencia">
+					<div id="elegirGrupoModAsis"></div>
+					<br><br>
+						<div id="ContenidoModificarAsis"></div>
+				</div>
 		</div>
 
 		<div data-role="footer" data-position="fixed">
