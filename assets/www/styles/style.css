@@ -56,3 +56,23 @@ label.error {
 	font:bold;
 	font-family: 'Jacques Francois', serif;
 }
+
+.imgIm{
+	width: 150px;
+	padding: 10px;
+	
+}
+
+.divProfe{
+	position:relative;
+	margin-right:auto;
+	float:none;
+	text-align:center;
+	padding: 10px;
+}
+
+#titulos{
+	font-family: sans-serif;
+	font: bold;
+	font-size: large;
+}

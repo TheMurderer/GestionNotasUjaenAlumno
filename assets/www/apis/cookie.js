@@ -22,6 +22,7 @@ function getCookie(name){
 }
 
 function refresco(){
+	//window.onload=resetTimer;
 	if(getCookie("validar") == "true"){
 
 		location.href='#pageSignatures';
@@ -80,6 +81,7 @@ function logout()
 
 function logout_()
 {
+
 	delCookie("validar");
 	var cad='';
 	$.ajax({
@@ -104,6 +106,7 @@ window.onbeforeunload=function(){
 };
 function resetTimer()
 {
+
 	if(getCookie("validar") == "true"){
 		clearTimeout(t);
 		t=setTimeout(logout,3600000); //logs out in 60 minutes

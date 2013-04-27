@@ -93,11 +93,27 @@ function calificarAlumno(idAsignatura){
 					codhtmlTrabajos = '<p class="letraDocumento" >No hay Trabajos</p>';
 					contenidoTrabajos=0;
 				}
+
+				if(arrayRespuesta[3].length != 0){
+					for(i = 0; i < arrayRespuesta[3].length;i++){
+						if(arrayRespuesta[3][i]['tipo']== 'T'){
+							$('#spTeoriaCal').html('('+arrayRespuesta[3][i]['porcentaje'] +'%)');
+						}else if(arrayRespuesta[3][i]['tipo'] == 'P'){
+							$('#spPracticasCal').html('('+arrayRespuesta[3][i]['porcentaje'] +'%)');
+						}else if(arrayRespuesta[3][i]['tipo'] == 'A'){
+							$('#spTrabajosCal').html('('+arrayRespuesta[3][i]['porcentaje'] +'%)');
+						}else if(arrayRespuesta[3][i]['tipo'] == 'TV'){
+							$('#spAsistenciaCal').html('('+arrayRespuesta[3][i]['porcentaje'] +'%)');
+						}
+							
+					}
+				}
 				
 				
 				$('#contDIVTeoria').html(codhtmlTeoria);
 				$('#contDIVPractica').html(codhtmlPracticas);
 				$('#contDIVTrabajos').html(codhtmlTrabajos);
+				$('#cabeceraConfiguracionAlumnos').trigger('create');
 				
 				
 				$('#panelContenidoAsignaturaAlum').trigger('create');

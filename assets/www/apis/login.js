@@ -23,10 +23,9 @@ function peticionLogin(){
 			}else{
 				//Guardamos el Id de la sessión
 				document.cookie= "validar=true";
-				//resetTimer();
+				resetTimer();
 				idSesion = arrayRespuesta["sesion"];
 				 //Lista de asignaturas del profesor
-				alert('Login correcto');
 				location.href = "#pageSignatures";
 				peticionAsignaturas();
 			}

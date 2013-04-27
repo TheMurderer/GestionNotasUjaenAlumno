@@ -51,8 +51,7 @@ function mostrarListaGruposModAsistencia(idAsignaturaSel){
 
 	var cad = "[{\"id\":\"" + idAsignaturaSel + "\"}]";
 	dniMod = dni;
-	alert("Hola pepe");
-	alert(cad);
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -63,7 +62,7 @@ function mostrarListaGruposModAsistencia(idAsignaturaSel){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			alert("respuesta");	
+
 			arrayRespuesta = eval(respuesta);
 			
 			var i;

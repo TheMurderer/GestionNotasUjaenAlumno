@@ -31,11 +31,14 @@
 	<script type="text/javascript" charset="utf-8" src="apis/addAsignatures.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/califications.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/attendance.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/confAsignature.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/validacion.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/cookie.js"></script>
   
 	<script src="jquery.mobile/json.min.js"></script>
 	</head>
   
- <body>
+ <body onload="resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');">
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : LOGIN de usario -->
@@ -164,13 +167,7 @@
 		</div>
 
 		<div data-role="content" align="center" id="contenidoOpAsig">
-			<!-- <ul data-role="listview" id="listaOpcionesAsignatura">
-				<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>
-				<li data-icon="edit"><a href="#" >Grupos teroría</a></li>
-				<li data-icon="edit"><a href="#">Inscripción en grupos</a></li>
-				<li data-icon="edit"><a href="#">Modificar Porcentajes</a></li>
-				<li data-icon="trash"><a href="#">Eliminar </a></li>
-			</ul>	 -->		
+		
 		</div>
 	</div>
 
@@ -218,10 +215,10 @@
 		    
 			<div data-role="navbar">
 				<ul>
-					<li><a id="pestanaTeoriaCalificacion" href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria </a></li>
-					<li><a id="pestanaPracticasCalificacion" href="" onClick="mostrarDIVAsig('P')"> Prácticas </a></li>
-					<li><a id="pestanaTrabajoCalificacion" href="" onClick="mostrarDIVAsig('TV')"> Trabajos </a></li>
-					<li><a id="pestanaAsistenciaCalificacion" href="" onClick="mostrarDIVAsig('A')"> Asistencia </a></li>
+					<li><a id="pestanaTeoriaCalificacion" href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria <span id="spTeoriaCal"> </span> </a></li>
+					<li><a id="pestanaPracticasCalificacion" href="" onClick="mostrarDIVAsig('P')"> Prácticas <span id="spPracticasCal"> </span> </a></li>
+					<li><a id="pestanaTrabajoCalificacion" href="" onClick="mostrarDIVAsig('TV')"> Trabajos <span id="spTrabajosCal"> </span> </a></li>
+					<li><a id="pestanaAsistenciaCalificacion" href="" onClick="mostrarDIVAsig('A')"> Asistencia <span id="spAsistenciaCal"> </span> </a></li>
 				</ul>
 			</div>
 		</div>
@@ -246,6 +243,56 @@
 			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
+	
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : PAGINA INFORMACIÓN -->
+	<!-- @description : Se muestra diferente información relacionada con una asignatura.  -->
+	<!-- @pageBefore  : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!-- @pageAfter   : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="InformacionAsig">
+		<div data-role="header" data-position="fixed" id="cabeceraInformacionAsig">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 id="cabe">Información sobre la asignatura</h1>
+		</div>
+		
+		<div id="cargando5" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+
+		<div data-role="content" id="panelContenidoInfoAsig">
+
+				<div data-role="content" id="ContentAsignaturaInfo"  align="center">
+					<p>
+					<span id="titulos">Nombre: </span><span id="contenido"> </span><br>
+					<span id="titulos">Tipo: </span><span id="contenidoT"> </span> &nbsp <span id="titulos"> Creditos: </span><span id="contenidoCred"> </span><br>
+					<span id="titulos">Curso: </span><span id="contenidoCurso">  </span> - <span id="contenidoTemp"> </span><br>
+					
+					<h3>Porcentajes</h3><!-- Meter en tabla -->
+					<table cellpadding="5" align="center">
+					<tr><td><span style="text-align:left" align="left" id="titulos">Teoria: </span></td><td style="text-align:right"><span id="porT" style="text-align:right"> </span></td><td><span id="titulos"> Punt. Minima: </span></td><td style="text-align:right"><span id="porTMin"> </span></td></tr>
+					<tr><td><span style="text-align:left" id="titulos">Practicas: </span></td><td style="text-align:right"><span id="porP" style="text-align:right"> </span></td><td> <span id="titulos">Punt. Minima: </span></td><td style="text-align:right"><span id="porPMin"> </span></td></tr>
+					<tr><td><span style="text-align:left" id="titulos">Trabajo: </span></td><td style="text-align:right"><span id="porTV" style="text-align:right"> </span></td><td> <span id="titulos">Punt. Minima: </span></td><td style="text-align:right"><span id="porTVMin"> </span></td></tr>
+					<tr><td><span style="text-align:left" id="titulos">Asistencia: </span></td><td style="text-align:right"><span id="porA" style="text-align:right"> </span></td><td> <span id="titulos">Punt. Minima: </span></td><td style="text-align:right"><span id="porAMin"> </span></td></tr>
+					
+					</table>
+					<h3>Profesores</h3>
+					</p> 
+					
+				</div>
+				
+				<div data-role="content" id="ContentProfesorInfo" style="text-align:center">
+				
+				</div>	
+
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
 	
 	<!-- DIALOGO RESPONSABLE -->
 	<div data-role="page" id="divDialogo">
