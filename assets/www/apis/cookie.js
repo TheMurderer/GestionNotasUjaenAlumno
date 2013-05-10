@@ -94,7 +94,7 @@ function logout_()
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			
+		 	
 		},
 		error: function(respuesta){
 		}
