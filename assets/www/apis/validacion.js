@@ -144,6 +144,32 @@ function validarFormulario(identificador){
 		}
 	}, 'Los porcentajes debes sumar 100');
 	
+	$.validator.addMethod("dni_validator", function(value) {
+		 var numero;
+		  var let;
+		  var letra;
+		  var expresion_regular_dni;
+		  var dni=$('#reDNI').val();
+		 
+		  expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+		 
+		  if(expresion_regular_dni.test (dni) == true){
+			 numero = dni.substr(0,dni.length-1);
+			 let = dni.substr(dni.length-1,1);
+			 numero = numero % 23;
+			 letra='TRWAGMYFPDXBNJZSQVHLCKET';
+			 letra=letra.substring(numero,numero+1);
+			 if (letra!=let) {
+				 return false;
+			 }else{
+			   return true;
+			 }
+		  }else{
+			 return false;
+		  }
+		
+	}, 'DNI incorrecto');
+	
 	//Validación de minimos en los porcentajes TEORÍA
 	$.validator.addMethod("minimaPuntuacionTeoria", function(value) {
 //		var teoria = Number($('#porcentajeT').val());

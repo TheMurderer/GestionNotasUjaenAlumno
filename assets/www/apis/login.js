@@ -1,3 +1,5 @@
+var dni='';
+
 function peticionLogin(){
 
 	console.log($('#formLogin').serialize());
@@ -27,11 +29,35 @@ function peticionLogin(){
 				idSesion = arrayRespuesta["sesion"];
 				 //Lista de asignaturas del profesor
 				location.href = "#pageSignatures";
+				//
 				peticionAsignaturas();
+				almacenarDNI();
 			}
 		},
 		error: function(respuesta){
 			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
+}
+
+function almacenarDNI(){
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'obtenerDNI',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			arrayRespuesta = eval(respuesta);
+            dni= arrayRespuesta["dni"];
+			
+		},
+		error: function(respuesta){
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
+		}
+	});
+	
 }

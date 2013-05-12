@@ -43,6 +43,10 @@ label.error {
 	font-family: 'Jacques Francois', serif;
 }
 
+.letraMaximos{
+	font-size: small;
+}
+
 .agrupacionElementos{
 	background-color: #EEEEEE;
 	border: 1px solid #EEEEEE;

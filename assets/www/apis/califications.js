@@ -43,9 +43,9 @@ function calificarAlumno(idAsignatura){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
 						codhtmlTeoria = codhtmlTeoria + '<div class="agrupacionElementos" >';
 						if(arrayRespuesta[0][i]["valor"] != -1){
-							codhtmlTeoria = codhtmlTeoria + '<br><span class="letraDocumento" ><b>' + arrayRespuesta[0][i]["descripcion"] + '</b></span> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["valor"]+'"  disabled="disabled"/><br>';
+							codhtmlTeoria = codhtmlTeoria + '<br><span class="letraDocumento" ><b>' + arrayRespuesta[0][i]["descripcion"] + '</b></span><br><span class="letraMaximos"> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ '</span> <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["valor"]+'"  disabled="disabled"/><br>';
 						}else{
-							codhtmlTeoria = codhtmlTeoria + '<br><span class="letraDocumento"><b>' + arrayRespuesta[0][i]["descripcion"] + '</b></span> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="" disabled="disabled" /><br>';
+							codhtmlTeoria = codhtmlTeoria + '<br><span class="letraDocumento"><b>' + arrayRespuesta[0][i]["descripcion"] + '</b></span><br><span class="letraMaximos"> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ '</span> <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="" disabled="disabled" /><br>';
 						}
 						codhtmlTeoria = codhtmlTeoria + '	<label class="letraDocumento" for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[0][i]["id"] +'" id="o'+arrayRespuesta[0][i]["id"] +'" disabled="disabled" >'+ arrayRespuesta[0][i]["observaciones"]+ '</textarea>';
 						
@@ -61,9 +61,9 @@ function calificarAlumno(idAsignatura){
 					for(i = 0; i < arrayRespuesta[1].length;i++){
 						codhtmlPracticas = codhtmlPracticas + '<div class="agrupacionElementos" >';
 						if(arrayRespuesta[1][i]["valor"] != -1){
-							codhtmlPracticas = codhtmlPracticas + '<br><span class="letraDocumento" ><b>' + arrayRespuesta[1][i]["descripcion"] + '</b></span> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["valor"]+'" disabled="disabled" /><br>';
+							codhtmlPracticas = codhtmlPracticas + '<br><span class="letraDocumento" ><b>' + arrayRespuesta[1][i]["descripcion"] + '</b></span><br><span class="letraMaximos"> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + '</span> <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["valor"]+'" disabled="disabled" /><br>';
 						}else{
-							codhtmlPracticas = codhtmlPracticas + '<br><span class="letraDocumento" ><b>' + arrayRespuesta[1][i]["descripcion"] + '</b></span> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="" disabled="disabled" /><br>';
+							codhtmlPracticas = codhtmlPracticas + '<br><span class="letraDocumento" ><b>' + arrayRespuesta[1][i]["descripcion"] + '</b></span><br><span class="letraMaximos"> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + '</span> <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="" disabled="disabled" /><br>';
 						}
 						
 						codhtmlPracticas = codhtmlPracticas + '	<label class="letraDocumento" for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[1][i]["id"] +'" id="o'+arrayRespuesta[1][i]["id"] +'"  disabled="disabled">'+ arrayRespuesta[1][i]["observaciones"]+ '</textarea>';
@@ -80,9 +80,9 @@ function calificarAlumno(idAsignatura){
 						codhtmlTrabajos = codhtmlTrabajos + '<div class="agrupacionElementos" >';
 						
 						if(arrayRespuesta[2][i]["valor"] != -1){
-							codhtmlTrabajos = codhtmlTrabajos + '<br> <span class="letraDocumento" ><b>' + arrayRespuesta[2][i]["descripcion"] + '</b></span> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["valor"]+'" disabled="disabled" /><br>';
+							codhtmlTrabajos = codhtmlTrabajos + '<br> <span class="letraDocumento" ><b>' + arrayRespuesta[2][i]["descripcion"] + '</b></span><br><span class="letraMaximos"> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + '</span> <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["valor"]+'" disabled="disabled" /><br>';
 						}else{
-							codhtmlTrabajos = codhtmlTrabajos + '<br> <span class="letraDocumento" ><b>' + arrayRespuesta[2][i]["descripcion"] + '</b> </span> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="" disabled="disabled" /><br>';
+							codhtmlTrabajos = codhtmlTrabajos + '<br> <span class="letraDocumento" ><b>' + arrayRespuesta[2][i]["descripcion"] + '</b> </span><br><span class="letraMaximos"> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + '</span> <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="" disabled="disabled" /><br>';
 						}
 						codhtmlTrabajos = codhtmlTrabajos + '<label for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[2][i]["id"] +'" id="o'+arrayRespuesta[2][i]["id"] +'" disabled="disabled"  >'+ arrayRespuesta[2][i]["observaciones"]+ '</textarea>';
 						
@@ -113,7 +113,7 @@ function calificarAlumno(idAsignatura){
 				$('#contDIVTeoria').html(codhtmlTeoria);
 				$('#contDIVPractica').html(codhtmlPracticas);
 				$('#contDIVTrabajos').html(codhtmlTrabajos);
-				$('#cabeceraConfiguracionAlumnos').trigger('create');
+				//$('#cabeceraConfiguracionAlumnos').trigger('create');
 				
 				
 				$('#panelContenidoAsignaturaAlum').trigger('create');

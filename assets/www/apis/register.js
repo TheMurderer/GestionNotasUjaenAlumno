@@ -18,7 +18,7 @@ function addSelectTitulacion(){
 
 			var i;
 
-			var codhtml = '<select id="menuTitulaciones" name="titulacion" >';
+			var codhtml = '<select id="menuTitulaciones" name="titulacion" required>';
 
 			if (arrayRespuesta.length != 0) {
 				// Opción por defecto

@@ -71,21 +71,23 @@ function ocultarTodosDIV(){
 
 function opcionesConfAsig(idAsignatura){
 
+
 	var codhtml='';
 	idAsignaturaSeleccionada = idAsignatura;
 	
-			codhtml='<p><ul data-role="listview" id="listaOpcionesAsignatura">';
+			codhtml='<ul data-role="listview" id="listaOpcionesAsignatura">';
 
 			codhtml=codhtml + '<li data-icon="plus"><a onclick="informacionAsig('+idAsignatura+')">Informaci\xf3n </a></li>';
 			codhtml=codhtml + '<li data-icon="edit"><a onclick="exportacionPDFCalif('+idAsignatura+')">Exportar calificicaciones (PDF)</a></li>';
 			codhtml=codhtml + '<li data-icon="delete"><a href="#divDialogoEliminacionAsignatura" data-rel="dialog" onclick="eliminarAsignaturaProf('+ idAsignatura +');">Salir</a></li>';
 
-            codhtml = codhtml + '</ul></p>';
-            $('#contenidoOpAsig').html(codhtml);
-            $('#contenidoOpAsig').refresh();
-            $('#contenidoOpAsig').trigger('create');
+            codhtml = codhtml + '</ul>';
 
-            //$('#listaOpcionesAsignatura').listview();
+            $('#contenidoOpAsig').html(codhtml);
+
+            $('#opcionesAsignatura').trigger('pagecreate');
+            $('#listaOpcionesAsignatura').listview();
+
 
 }
 
@@ -211,6 +213,6 @@ function eliminarAsignaturaProf(idAsignatura){
 
 function exportacionPDFCalif(idAsignatura){
 	
-	location.href=p_url + '?m=generacionInformesPDF&datos=[{"idAsig":"'+idAsignatura+'"}]';
+	location.href=p_url + '?m=generacionInformesPDF&datos=[{"idAsig":"'+idAsignatura+'","dni":"'+dni+'"}]';
 
 }
