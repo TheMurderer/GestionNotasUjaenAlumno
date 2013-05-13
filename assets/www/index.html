@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-type" name="viewport" charset="utf-8" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
     <title>Aplic. Web de jQuery Mobile</title>
 	
 	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" /> 
@@ -24,7 +24,7 @@
 	<script type="text/javascript" src="encryption/sha1.js"></script>
 	
 	
-	<!-- INCLUSIÓN DE LIBRERIAS API PROPIA -->
+	<!-- INCLUSIÃ“N DE LIBRERIAS API PROPIA -->
 	<script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/asignatures.js"></script>
@@ -42,7 +42,7 @@
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : LOGIN de usario -->
-	<!-- @description : Punto de entrada a la aplicación con el logeo del usuario -->
+	<!-- @description : Punto de entrada a la aplicaciÃ³n con el logeo del usuario -->
 	<!-- @pageBefore  : Ninguna -->
 	<!-- @pageAfter   : -->
 	<!--***********************************************************************-->
@@ -59,7 +59,7 @@
 					<br>
 				</div>
 				<div class="agrupacionElementos">
-					<p class="letraDocumento" >Contraseña:</p>
+					<p class="letraDocumento" >ContraseÃ±a:</p>
 					<input type="password" name="pass" id="passwordinput" value="" placeholder="Pass" class="required" minlength="5"/>
 					<br>
 				</div>
@@ -82,7 +82,7 @@
 	<!--***********************************************************************-->
 	<div data-role="page" id="pageRegister">
 		<div data-role="header" data-position="fixed">
-			<a href="#pageLogin" data-icon="back">Atrás</a>
+			<a href="#pageLogin" data-icon="back">AtrÃ¡s</a>
 			<h1>Registrarse</h1>
 		</div>
 		<div id="cargando2" class="capaCargando">
@@ -111,7 +111,7 @@
 					<br>
 				</div>
 				<div class="agrupacionElementos">
-					<p class="letraDocumento" >Titulación:</p>
+					<p class="letraDocumento" >TitulaciÃ³n:</p>
 						<div id="reTitulacion" name="reTitulacion"></div>
 				</div>
 				<div class="agrupacionElementos">
@@ -139,14 +139,14 @@
 	<!-- @page 		  : ASIGNATURAS DEL PROFESOR -->
 	<!-- @description : Muestra una lista con las asignaturas que el profesor lleva -->
 	<!-- @pageBefore  : LOGIN -->
-	<!-- @pageAfter   : AÑADIR ASIGNATURA/ -->
+	<!-- @pageAfter   : AÃ‘ADIR ASIGNATURA/ -->
 	<!--***********************************************************************-->
 	<div data-role="page" id="pageSignatures">
 		<div data-role="header" data-position="fixed">
-			<a href="#pageLogin" data-icon="back">Atrás</a>
+			<a href="#pageLogin" data-icon="back">AtrÃ¡s</a>
 			<h1>Asignaturas</h1>
 			<a href="#pageAddSignature" data-icon="plus"
-				onclick="peticionAsignaturasTitulacion()">Añadir</a>
+				onclick="peticionAsignaturasTitulacion()">AÃ±adir</a>
 		</div>
 
 		<div data-role="content" id="listaAsignaturas"></div>
@@ -172,14 +172,14 @@
 	</div>
 
 	<!--***********************************************************************-->
-	<!-- @page 		  : AÑADIR ASIGNATURA -->
-	<!-- @description : Añade una asignatura nueva a la lista del profesor, permitiendo su configuración -->
+	<!-- @page 		  : AÃ‘ADIR ASIGNATURA -->
+	<!-- @description : AÃ±ade una asignatura nueva a la lista del profesor, permitiendo su configuraciÃ³n -->
 	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
 	<!-- @pageAfter   : ASIGNATURAS DEL PROFESOR -->
 	<!--***********************************************************************-->
 	<div data-role="page" id="pageAddSignature">
 		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<a href="#pageSignatures" data-icon="back">AtrÃ¡s</a>
 			<h1>Nueva asignatura</h1>
 		</div>
 		
@@ -204,19 +204,19 @@
 	
 	<!--***********************************************************************-->
 	<!-- @page 		  : CALIFICAR ALUMNO -->
-	<!-- @description : Permite poner la nota de teoría/prácticas/trabajos al alumno seleccionado  -->
+	<!-- @description : Permite poner la nota de teorÃ­a/prÃ¡cticas/trabajos al alumno seleccionado  -->
 	<!-- @pageBefore  : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
 	<!-- @pageAfter   : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
 	<!--***********************************************************************-->
 	<div data-role="page" id="calificacionAlumnos">
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracionAlumnos">
-			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<a href="#pageSignatures" data-icon="back">AtrÃ¡s</a>
 			<h1 id="asignatura">Alumno</h1>
 		    
 			<div data-role="navbar">
 				<ul>
 					<li><a id="pestanaTeoriaCalificacion" href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria <span id="spTeoriaCal"> </span> </a></li>
-					<li><a id="pestanaPracticasCalificacion" href="" onClick="mostrarDIVAsig('P')"> Prácticas <span id="spPracticasCal"> </span> </a></li>
+					<li><a id="pestanaPracticasCalificacion" href="" onClick="mostrarDIVAsig('P')"> PrÃ¡cticas <span id="spPracticasCal"> </span> </a></li>
 					<li><a id="pestanaTrabajoCalificacion" href="" onClick="mostrarDIVAsig('TV')"> Trabajos <span id="spTrabajosCal"> </span> </a></li>
 					<li><a id="pestanaAsistenciaCalificacion" href="" onClick="mostrarDIVAsig('A')"> Asistencia <span id="spAsistenciaCal"> </span> </a></li>
 				</ul>
@@ -246,15 +246,15 @@
 	
 	
 	<!--***********************************************************************-->
-	<!-- @page 		  : PAGINA INFORMACIÓN -->
-	<!-- @description : Se muestra diferente información relacionada con una asignatura.  -->
+	<!-- @page 		  : PAGINA INFORMACIÃ“N -->
+	<!-- @description : Se muestra diferente informaciÃ³n relacionada con una asignatura.  -->
 	<!-- @pageBefore  : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
 	<!-- @pageAfter   : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
 	<!--***********************************************************************-->
 	<div data-role="page" id="InformacionAsig">
 		<div data-role="header" data-position="fixed" id="cabeceraInformacionAsig">
-			<a href="#pageSignatures" data-icon="back">Atrás</a>
-			<h1 id="cabe">Información sobre la asignatura</h1>
+			<a href="#pageSignatures" data-icon="back">AtrÃ¡s</a>
+			<h1 id="cabe">InformaciÃ³n sobre la asignatura</h1>
 		</div>
 		
 		<div id="cargando5" class="capaCargando">
@@ -295,7 +295,7 @@
 		</div>
 
 		<div data-role="content" id="" align="center">
-			<h3 class="estiloH3" >¿Es usted el responsable de la asignatura?</h3>
+			<h3 class="estiloH3" >Â¿Es usted el responsable de la asignatura?</h3>
 			<a href="javascript:EsResponsable()" data-role="button" data-inline="true">Si</a>
 			<a href="javascript:noEsResponsable()" data-role="button" data-inline="true">No</a>		
 		</div>
@@ -308,7 +308,7 @@
 		</div>
 
 		<div data-role="content" align="center">
-			<h3 class="estiloH3">¿Está usted seguro de que desea eliminar el grupo?</h3>
+			<h3 class="estiloH3">Â¿EstÃ¡ usted seguro de que desea eliminar el grupo?</h3>
 			<div id="btSiEliminar">
 				<a href="#" data-role="button" data-inline="true" data-theme="d" >Si</a>
 				<a href="#" data-role="button" data-inline="true" data-theme="d" >No</a>	
@@ -323,7 +323,7 @@
 		</div>
 
 		<div data-role="content" id="dialogElGrupoAsig" align="center">
-			<h3 class="estiloH3" >¿Está usted seguro de que desea eliminar la asignatura?</h3>
+			<h3 class="estiloH3" >Â¿EstÃ¡ usted seguro de que desea eliminar la asignatura?</h3>
 			<div id="btSiEliminarAsignatura"></div>	
 		</div>
 	</div>
