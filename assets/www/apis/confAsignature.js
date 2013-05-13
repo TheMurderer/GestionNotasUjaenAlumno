@@ -132,14 +132,15 @@ var cad = "[{\"idAsig\":\"" + idAsignatura + "\"}]";
 				for(i = 0; i < arrayRespuesta[1].length; i++){
 					if(arrayRespuesta[1][i]["fotografia"] !=""){
 						codhtml = codhtml + '<div id="profesor' + i + '" class="divProfe">';
-						codhtml= codhtml + '<div id="ctImage'+i+'" class="img"> <img class="imgIm" src="http://eps.ujaen.es/' + arrayRespuesta[1][i]["fotografia"] + '"></div>';
+						var fotografia ='http://eps.ujaen.es'+ arrayRespuesta[1][i]["fotografia"].replace('\\',' ');
+						codhtml= codhtml + '<div id="ctImage'+i+'" class="img"> <img class="imgIm" src="' + fotografia + '"></div>';
 					}else{
 						codhtml= codhtml + '<div id="ctImage'+i+'" class="img"><img class="imgIm" src="./Imagenes/anonimo.jpg"></div>';
 					}
 					codhtml = codhtml + '<div id="contenDescp" class="content">'+ arrayRespuesta[1][i]["nombre"] + ' ' + arrayRespuesta[1][i]["apellidos"] + '<br>';
 					codhtml= codhtml + 'Despacho ' + arrayRespuesta[1][i]["edificio"] + ' - ' + arrayRespuesta[1][i]["numero_despacho"] + '<br>';
 					if(arrayRespuesta[1][i]["web"] != ""){
-						codhtml = codhtml + 'Web: ' + arrayRespuesta[1][i]["web"] + ' Tlno: ' + arrayRespuesta[1][i]["telefono"]+'<br></div></div>';
+						codhtml = codhtml + 'Web: <a href="' + arrayRespuesta[1][i]["web"] + '">'+arrayRespuesta[1][i]["web"]+'</a> Tlno: ' + arrayRespuesta[1][i]["telefono"]+'<br></div></div>';
 					}else {
 						codhtml = codhtml + ' Tlno: ' + arrayRespuesta[1][i]["telefono"]+'<br></div></div>';
 					}
