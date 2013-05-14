@@ -41,6 +41,7 @@ function peticionLogin(){
 }
 
 function almacenarDNI(){
+	var cad='';
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -53,6 +54,7 @@ function almacenarDNI(){
 		success: function(respuesta){
 			arrayRespuesta = eval(respuesta);
             dni= arrayRespuesta["dni"];
+
 			
 		},
 		error: function(respuesta){

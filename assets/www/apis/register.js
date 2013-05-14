@@ -63,7 +63,7 @@ function peticionRegistro(){
 	cad = cad.substring(0, cad.indexOf('pass'));
 	cad = cad + 'pass":"' + hex_sha1($('#password').val())+'"}]';
 	cad.replace(" ","%20");
-	alert(cad);
+
 
 	$.ajax({
 		type: "GET",
