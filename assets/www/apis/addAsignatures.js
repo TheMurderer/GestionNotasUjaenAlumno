@@ -187,7 +187,7 @@ function inscripcionGrupos(){
 function addNewSignature(){
 	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject())
 	+ "]";
-	alert(cad);
+
 	$.ajax({
 		type : "GET",
 		url : p_url,
