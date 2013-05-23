@@ -16,7 +16,7 @@
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script src="jquery.mobile/jquery.validate.js"></script>
 	
-	<script type="text/javascript" charset="utf-8" src="cordova-2.6.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="index.js"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="config.js"></script>
@@ -34,7 +34,7 @@
 	<script type="text/javascript" charset="utf-8" src="apis/confAsignature.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/validacion.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/cookie.js"></script>
-  
+    <script type="text/javascript" charset="utf-8">document.addEventListener("deviceready", leerDatosUsuario, false);</script>
 	<script src="jquery.mobile/json.min.js"></script>
 	</head>
   
@@ -63,14 +63,16 @@
 					<input type="password" name="pass" id="passwordinput" value="" placeholder="Pass" class="required" minlength="5"/>
 					<br>
 				</div>
-				
+				<div class="agrupacionElementos">
+					<label><input type="checkbox" name="Recuerdame" id="checkRec"/>Recuerdame </label>
+				</div> 
 				<div align="center">
 					<input id="btLogin" value="Entrar" type="submit" data-inline="true" >
 				</div>
 			</form>
 		</div>
 		<div data-role="footer" data-position="fixed">
-			<h4>Uja</h4>
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 
