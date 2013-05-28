@@ -24,7 +24,7 @@ function addSelectTitulacion(){
 				// Opción por defecto
 				codhtml = codhtml
 						+ '<option value="" disabled="disabled" selected>'
-						+ "Eliga una titulaci\xF3n" + '</option>';
+						+ "Elija una titulaci\xF3n" + '</option>';
 				for (i = 0; i < arrayRespuesta.length; i++) {
 					codhtml = codhtml + '<option value="'
 							+ arrayRespuesta[i]["id"] + '">'

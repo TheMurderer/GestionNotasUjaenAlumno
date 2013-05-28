@@ -34,7 +34,28 @@
 	<script type="text/javascript" charset="utf-8" src="apis/confAsignature.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/validacion.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/cookie.js"></script>
-    <script type="text/javascript" charset="utf-8">document.addEventListener("deviceready", leerDatosUsuario, false);</script>
+    <script type="text/javascript" charset="utf-8">
+    
+    
+    document.addEventListener("deviceready", leerDatosUsuario, false);
+    document.addEventListener("deviceready", onBackKeyDown, false);
+
+    function handleBackButton(){
+    	 
+        if($.mobile.activePage.attr('id') == 'pageLogin'){
+            navigator.app.exitApp();
+        }else if ($.mobile.activePage.attr('id') == 'pageSignatures'){
+            $.mobile.changePage('#pageLogin');
+        }else{
+            navigator.app.backHistory();
+        }
+    }
+
+    function onBackKeyDown() {
+    	 document.addEventListener("backbutton", handleBackButton, true);
+    }
+    
+    </script>
 	<script src="jquery.mobile/json.min.js"></script>
 	</head>
   

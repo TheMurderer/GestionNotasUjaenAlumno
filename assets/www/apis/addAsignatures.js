@@ -204,6 +204,7 @@ function addNewSignature(){
 				navigator.notification.alert('Error al crear asignatura', null,
 						'Nueva asignatura', 'Aceptar');
 			} else {
+				alert("Su operaci\xF3n est\xE1 pendiente de aceptaci\xF3n por el profesor.");
 				peticionAsignaturas(); // Lista de asignaturas del profesor
 				location.href = "#pageSignatures";
 			}
